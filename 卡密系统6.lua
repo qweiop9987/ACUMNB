@@ -96,7 +96,7 @@ TextButton.MouseButton1Click:Connect(function()
 	if KeyTextbox.Text == key then
 		TextButton.Text = "正确!"
 		task.wait(2)
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/qweiop9987/ACUMNB/refs/heads/main/ACUM%E8%84%9A%E6%9C%AC.lua"))() -- insert script on this line
+		 loadstring(game:HttpGet("https://raw.githubusercontent.com/qweiop9987/ACUMNB/refs/heads/main/ACUM%E8%84%9Amm%E6%9C%AC.lua"))() -- insert script on this line
 		ScreenGui:Destroy()
 	else
 		TextButton.Text = "错误的卡密!"
