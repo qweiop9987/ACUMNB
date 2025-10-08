@@ -1,0 +1,1225 @@
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/main.lua"))()
+
+function gradient(text, startColor, endColor)
+    local result = ""
+    local length = #text
+
+    for i = 1, length do
+        local t = (i - 1) / math.max(length - 1, 1)
+        local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
+        local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
+        local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
+
+        local char = text:sub(i, i)
+        result = result .. "<font color=\"rgb(" .. r ..", " .. g .. ", " .. b .. ")\">" .. char .. "</font>"
+    end
+
+    return result
+end
+
+local Confirmed = false
+
+WindUI:Popup({
+    Title = "ACUM脚本",
+    IconThemed = true,
+    Content = "免费脚本 ",
+    Buttons = {
+        {
+            Title = "退出",
+            Callback = function() end,
+            Variant = "Secondary",
+        },
+        {
+            Title = "进入",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
+        }
+    }
+})
+
+repeat wait() until Confirmed
+
+local Window = WindUI:CreateWindow({
+    Title = "ACUM集合",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Folder = "XYScript",
+    Size = UDim2.fromOffset(580, 340),
+    Transparent = true,
+    Theme = "Light",
+    User = { Enabled = true },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true,
+})
+
+Window:Tag({
+        Title = "测试版",
+        Color = Color3.fromHex("#30ff6a")
+    })
+
+Window:Tag({
+        Title = "1.0.0",
+        Color = Color3.fromHex("#0000FF")
+    })
+
+Window:Tag({
+        Title = "持续更新中",
+        Color = Color3.fromHex("#000000")
+    })
+    
+Window:EditOpenButton({
+    Title = "ACUM脚本",
+    Icon = "rbxassetid://6026568198",
+    CornerRadius = UDim.new(0,16),
+    Size = UDim2.fromOffset(580, 340),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(
+        Color3.fromHex("FF0F7B"), 
+        Color3.fromHex("F89B29")
+    ),
+    Draggable = true,
+})
+
+
+local Tabs = {}
+
+Tabs.ElementsSection = Window:Section({
+    Title = "ACUM脚本",
+    Icon = "rbxassetid://6026568198",
+    Opened = true,
+})
+
+Tabs.ZhuanmenSection = Window:Section({
+    Title = "专门脚本",
+    Opened = true,
+})
+
+Tabs.WindowSection = Window:Section({
+    Title = "窗口管理",
+    Icon = "app-window-mac",
+    Opened = true,
+})
+
+Tabs.ParagraphTab = Tabs.ElementsSection:Tab({ Title = "首页", Icon = "type" })
+Tabs.ButtonTab = Tabs.ElementsSection:Tab({ Title = "脚本", Icon = "mouse-pointer-2" })
+Tabs.FE1Tab = Tabs.ElementsSection:Tab({ Title = "FE脚本", Icon = "paintbrush" })
+Tabs.ActionTab = Tabs.ElementsSection:Tab({ Title = "动作", Icon = "paintbrush" })
+Tabs.otherTab = Tabs.ElementsSection:Tab({ Title = "其它脚本中心", Icon = "toggle-left" })
+Tabs.PictureTab = Tabs.ElementsSection:Tab({ Title = "画面与音乐", Icon = "toggle-left" })
+Tabs.DevelopmentTab = Tabs.ElementsSection:Tab({ Title = "开发", Icon = "toggle-left" })
+Tabs.BeiyiqiTab = Tabs.ZhuanmenSection:Tab({ Title = "服务器脚本", Icon = "type" })
+Tabs.N99nightTab = Tabs.ZhuanmenSection:Tab({ Title = "", Icon = "" })
+
+Tabs.WindowTab = Tabs.WindowSection:Tab({ 
+    Title = "窗口文件配置", 
+    Icon = "settings", 
+    ShowTabTitle = true 
+})
+Tabs.CreateThemeTab = Tabs.WindowSection:Tab({ Title = "主题", Icon = "palette" })
+
+Window:SelectTab(1)
+
+Tabs.ParagraphTab:Paragraph({
+    Title = "qwrtui114587的脚本",
+    Desc = "牛逼",
+    Image = "https://i.postimg.cc/QtzNTpgP/Image-1756518369463.jpg",
+    ImageSize = 42,
+    Thumbnail = "https://i.postimg.cc/QtzNTpgP/Image-1756518369463.jpg",
+    ThumbnailSize = 120
+})
+
+
+Tabs.ParagraphTab:Paragraph({
+    Title = "您的注入器: " .. identifyexecutor(),
+})
+
+Tabs.ParagraphTab:Paragraph({
+    Title = "您的用户名: " .. game.Players.LocalPlayer.Name
+})
+
+Tabs.ParagraphTab:Paragraph({
+    Title = "您当前服务器ID: " .. tostring(game.GameId),
+    Callback = function()
+        setclipboard(tostring(game.GameId))
+    end
+})
+
+local TimeTag = Window:Tag({
+    Title = "00:00", 
+    Color = Color3.fromRGB(255, 255, 255) 
+})
+
+local hue = 0
+task.spawn(function()
+    while true do
+        local now = os.date("*t")
+        local hours = string.format("%02d", now.hour)
+        local minutes = string.format("%02d", now.min)
+        local timeString = hours .. ":" .. minutes
+        TimeTag:SetTitle(timeString)
+        task.wait(0.06)
+    end
+end)
+
+
+    
+
+Tabs.ParagraphTab:Button({
+    Title = "发送",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/phonto"))()
+    end
+})
+
+Tabs.ParagraphTab:Input({
+    Title = "图片ID",
+    PlaceholderText = "Enter file name",
+    Callback = function(phonto)
+    end
+})
+
+
+WindUI:Notify({
+    Title = "ACUM脚本",
+    Content = "执行成功",
+    Duration = 2
+})
+
+
+WindUI:Notify({
+    Title = "欢迎使用ACUM",
+    Content = "未发现错误",
+    Duration = 2
+})
+-------------------------------------通用-------------------------------------
+Tabs.ButtonTab:Slider({
+    Title = "跳跃",
+    Value = {
+        Min = 50,
+        Max = 200,
+        Default = 50,
+    },
+    Increment = 1,
+    Callback = function(value)
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+        end
+    end
+})
+
+Tabs.ButtonTab:Slider({
+    Title = "移速",
+    Value = {
+        Min = 16,
+        Max = 100,
+        Default = 16,
+    },
+    Increment = 1,
+    Callback = function(value)
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+        end
+    end
+})
+
+Tabs.ButtonTab:Slider({
+    Title = "重力",
+    Value = {
+        Min = 0.1,
+        Max = 500.0,
+        Default = 196.2,
+    },
+    Step = 0.1,
+    Callback = function(value)
+        game.Workspace.Gravity = value
+    end
+})
+
+Tabs.ButtonTab:Toggle({
+    Title = "夜视",
+    Value = false,
+    Callback = function(state)
+        if state then
+            game.Lighting.Ambient = Color3.new(1, 1, 1)  
+        else
+            game.Lighting.Ambient = Color3.new(0, 0, 0) 
+        end
+    end
+})
+
+local Noclip = false
+local NoclipConnection
+Tabs.ButtonTab:Toggle({
+    Title = "穿墙",
+    Value = false,
+    Callback = function(state)
+        if state then
+            Noclip = true
+            NoclipConnection = game:GetService("RunService").Stepped:Connect(function()
+                if Noclip then
+                    local character = game.Players.LocalPlayer.Character
+                    if character then
+                        for _, part in pairs(character:GetDescendants()) do
+                            if part:IsA("BasePart") then
+                                part.CanCollide = false
+                            end
+                        end
+                    end
+                else
+                    NoclipConnection:Disconnect()
+                end
+            end)
+        else
+            Noclip = false
+            if NoclipConnection then
+                NoclipConnection:Disconnect()
+            end
+        end
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "视角锁定",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ccacca444/scripts1/main/locking.lua"))()
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "点击传送工具",
+    Callback = function()
+        mouse = game.Players.LocalPlayer:GetMouse() tool = Instance.new("Tool") tool.RequiresHandle = false tool.Name = "点击传送" tool.Activated:connect(function() local pos = mouse.Hit+Vector3.new(0,2.5,0) pos = CFrame.new(pos.X,pos.Y,pos.Z) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos end) tool.Parent = game.Players.LocalPlayer.Backpack
+    end
+})
+
+
+Tabs.ButtonTab:Button({
+    Title = "肘击",
+    Callback = function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'),true))()
+
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "玩家实时数据",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.txt"))()
+
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "vapev4",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "查看别人物品栏",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E7%9C%8B%E7%89%A9%E5%93%81%E6%A0%8F.txt"))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "玩家进入提示",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "飞行",
+    Callback = function()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "飞车",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/c3dcf58fa8cf7277.txt_2024-08-08_160648.OTed.lua"))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "无限跳",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "甩飞",
+    Callback = function()
+        loadstring(game:HttpGet'https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/11_1.txt_2024-08-08_214614.OTed.lua')()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "替身",
+    Callback = function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/SkrillexMe/SkrillexLoader/main/SkrillexLoadMain')))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "反挂机",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "铁拳",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_rf6iQURzu1fqrytcnLBAvW34C9N55kS9g9G3CKz086rC47M6632sEd4ZZYB0AYgV.lua.txt'))()
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "自瞄",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))() 
+        
+    end
+})
+
+Tabs.ButtonTab:Button({
+    Title = "吸人",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/hQSBGsw2'))()
+        
+    end
+})
+-------------------------------------FE-------------------------------------
+Tabs.FE1Tab:Button({
+    Title = "别人可见音效",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://rawscripts.net/raw/Brookhaven-RP-Audio-Player-Script-Brookhaven-RP-33531"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "AC6放音乐",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Ac6-Music-Vulnerability-25536"))()
+        
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "强行装备丢弃",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E5%BC%BA%E8%A1%8C%E8%A3%85%E5%A4%87%E6%88%96%E4%B8%A2%E5%BC%83%E7%89%A9%E5%93%81.txt"))()
+        
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "假延迟",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RENZXW/RENZXW-SCRIPTS/main/fakeLAGRENZXW.txt"))()
+        
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "隐身",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://pastebin.com/raw/vP6CrQJj"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "蜘蛛侠",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E8%9C%98%E8%9B%9B%E4%BE%A0.txt"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "拥抱",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/ExploitFin/Animations/refs/heads/main/Front%20and%20Back%20Hug%20Tool"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "隐身",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://pastebin.com/raw/vP6CrQJj"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "隐身2",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://pastebin.com/raw/3Rnd9rHf"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "失重",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/0%20Graviy%20Trip%20Universal"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "跳墙",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20WallHop%20V4%20script"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "蜘蛛侠",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E8%9C%98%E8%9B%9B%E4%BE%A0.txt"))()
+    end
+})
+
+Tabs.FE1Tab:Button({
+    Title = "前后空翻",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E6%97%8B%E8%BD%AC.txt"))()
+    end
+})
+
+-------------------------------------其它脚本-------------------------------------
+Tabs.otherTab:Button({
+    Title = "DHJB脚本卡密",
+    Callback = function()
+        setclipboard("wjbhd")
+    end
+})
+
+Tabs.otherTab:Button({
+    Title = "DHJB脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/1.3.txt"))()
+    end
+})
+
+Tabs.otherTab:Button({
+    Title = "XK脚本",
+    Callback = function()
+        loadstring(game:HttpGet(('https://github.com/devslopo/DVES/raw/main/XK%20Hub')))()
+    end
+})
+
+Tabs.otherTab:Button({
+    Title = "小月脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/bypass-Script/refs/heads/main/xiaoyue/Main%20Script.lua"))()
+    end
+})
+
+Tabs.otherTab:Button({
+    Title = "殺脚本",
+    Callback = function()
+        FengYu_HUB = "殺脚本"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/FengYu-3/FengYu/refs/heads/main/QQ1926190957.lua"))()
+    end
+})
+
+Tabs.otherTab:Button({
+    Title = "情云脚本",
+    Callback = function()
+        loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+    end
+})
+
+-------------------------------------窗口配置-------------------------------------
+local HttpService = game:GetService("HttpService")
+
+local folderPath = "WindUI"
+if not isfolder(folderPath) then
+    makefolder(folderPath)
+end
+
+local function SaveFile(fileName, data)
+    local filePath = folderPath .. "/" .. fileName .. ".json"
+    local jsonData = HttpService:JSONEncode(data)
+    writefile(filePath, jsonData)
+end
+
+local function LoadFile(fileName)
+    local filePath = folderPath .. "/" .. fileName .. ".json"
+    if isfile(filePath) then
+        local jsonData = readfile(filePath)
+        return HttpService:JSONDecode(jsonData)
+    end
+    return nil
+end
+
+local function ListFiles()
+    local files = {}
+    for _, file in ipairs(listfiles(folderPath)) do
+        local fileName = file:match("([^/]+)%.json$")
+        if fileName then
+            table.insert(files, fileName)
+        end
+    end
+    return files
+end
+
+Tabs.WindowTab:Section({ Title = "窗口", Icon = "app-window-mac" })
+
+local themeValues = {}
+for name, _ in pairs(WindUI:GetThemes()) do
+    table.insert(themeValues, name)
+end
+
+local themeDropdown = Tabs.WindowTab:Dropdown({
+    Title = "选择主题",
+    Multi = false,
+    AllowNone = false,
+    Value = nil,
+    Values = themeValues,
+    Callback = function(theme)
+        WindUI:SetTheme(theme)
+    end
+})
+themeDropdown:Select(WindUI:GetCurrentTheme())
+
+local ToggleTransparency = Tabs.WindowTab:Toggle({
+    Title = "切换窗口透明度",
+    Callback = function(e)
+        Window:ToggleTransparency(e)
+    end,
+    Value = WindUI:GetTransparency()
+})
+
+Tabs.WindowTab:Section({ Title = "保存" })
+
+local fileNameInput = ""
+Tabs.WindowTab:Input({
+    Title = "写入文件名",
+    PlaceholderText = "Enter file name",
+    Callback = function(text)
+        fileNameInput = text
+    end
+})
+
+Tabs.WindowTab:Button({
+    Title = "保存文件",
+    Callback = function()
+        if fileNameInput ~= "" then
+            SaveFile(fileNameInput, { Transparent = WindUI:GetTransparency(), Theme = WindUI:GetCurrentTheme() })
+        end
+    end
+})
+
+Tabs.WindowTab:Section({ Title = "加载" })
+
+local filesDropdown
+local files = ListFiles()
+
+filesDropdown = Tabs.WindowTab:Dropdown({
+    Title = "选择文件",
+    Multi = false,
+    AllowNone = true,
+    Values = files,
+    Callback = function(selectedFile)
+        fileNameInput = selectedFile
+    end
+})
+
+Tabs.WindowTab:Button({
+    Title = "加载文件",
+    Callback = function()
+        if fileNameInput ~= "" then
+            local data = LoadFile(fileNameInput)
+            if data then
+                WindUI:Notify({
+                    Title = "文件已加载",
+                    Content = "Loaded data: "..HttpService:JSONEncode(data),
+                    Duration = 5,
+                })
+                if data.Transparent then 
+                    Window:ToggleTransparency(data.Transparent)
+                    ToggleTransparency:SetValue(data.Transparent)
+                end
+                if data.Theme then 
+                    WindUI:SetTheme(data.Theme)
+                    themeDropdown:Select(data.Theme)
+                end
+            end
+        end
+    end
+})
+
+Tabs.WindowTab:Button({
+    Title = "覆盖文件",
+    Callback = function()
+        if fileNameInput ~= "" then
+            SaveFile(fileNameInput, { Transparent = WindUI:GetTransparency(), Theme = WindUI:GetCurrentTheme() })
+        end
+    end
+})
+
+Tabs.WindowTab:Button({
+    Title = "刷新列表",
+    Callback = function()
+        filesDropdown:Refresh(ListFiles())
+    end
+})
+
+local currentThemeName = WindUI:GetCurrentTheme()
+local themes = WindUI:GetThemes()
+
+local ThemeAccent = themes[currentThemeName].Accent
+local ThemeOutline = themes[currentThemeName].Outline
+local ThemeText = themes[currentThemeName].Text
+local ThemePlaceholderText = themes[currentThemeName].Placeholder
+
+function updateTheme()
+    WindUI:AddTheme({
+        Name = currentThemeName,
+        Accent = ThemeAccent,
+        Outline = ThemeOutline,
+        Text = ThemeText,
+        Placeholder = ThemePlaceholderText
+    })
+    WindUI:SetTheme(currentThemeName)
+end
+
+local CreateInput = Tabs.CreateThemeTab:Input({
+    Title = "主题名称",
+    Value = currentThemeName,
+    Callback = function(name)
+        currentThemeName = name
+    end
+})
+
+Tabs.CreateThemeTab:Colorpicker({
+    Title = "背景颜色",
+    Default = Color3.fromHex(ThemeAccent),
+    Callback = function(color)
+        ThemeAccent = color:ToHex()
+    end
+})
+
+Tabs.CreateThemeTab:Colorpicker({
+    Title = "轮廓颜色",
+    Default = Color3.fromHex(ThemeOutline),
+    Callback = function(color)
+        ThemeOutline = color:ToHex()
+    end
+})
+
+Tabs.CreateThemeTab:Colorpicker({
+    Title = "文本颜色",
+    Default = Color3.fromHex(ThemeText),
+    Callback = function(color)
+        ThemeText = color:ToHex()
+    end
+})
+
+Tabs.CreateThemeTab:Colorpicker({
+    Title = "占位符文本颜色",
+    Default = Color3.fromHex(ThemePlaceholderText),
+    Callback = function(color)
+        ThemePlaceholderText = color:ToHex()
+    end
+})
+
+Tabs.CreateThemeTab:Button({
+    Title = "更新主题",
+    Callback = function()
+        updateTheme()
+    end
+})
+
+-------------------------------------开发-------------------------------------
+Tabs.DevelopmentTab:Button({
+    Title = "http spy",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Best-HTTP-SPY-38448"))()
+    end
+})
+
+Tabs.DevelopmentTab:Button({
+    Title = "汉化dex",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/bex.lua"))()
+    end
+})
+
+Tabs.DevelopmentTab:Button({
+    Title = "simple say",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Tools/SimpleSpy.lua"))()
+    end
+})
+
+Tabs.DevelopmentTab:Button({
+    Title = "Sigma-Spy",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/depthso/Sigma-Spy/refs/heads/main/Main.lua"))()
+    end
+})
+-------------------------------------画面与音乐-------------------------------------
+Tabs.PictureTab:Button({
+    Title = "光影",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/MZEEN2424/Graphics/main/Graphics.xml"))()
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "提高画质",
+    Callback = function()
+        loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/Xingtaiduan/Script/main/Content/HighQuality"))()
+    end
+})
+
+local MusicInput = ""
+Tabs.PictureTab:Input({
+    Title = "输入音乐ID",
+    PlaceholderText = "Enter music ID",
+    Callback = function(Music)
+        MusicInput = Music
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "播放",
+    Callback = function()
+        local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://"..MusicInput
+    sound.Parent = game.Workspace
+    sound:Play()
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "以下皆为复制ID"
+})
+
+Tabs.PictureTab:Button({
+    Title = "饿～",
+    Callback = function()
+    setclipboard("116175711187716")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "饿～变调",
+    Callback = function()
+    setclipboard("89273067271701")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "钢管落地",
+    Callback = function()
+    setclipboard("8324338507")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "Coolkid",
+    Callback = function()
+    setclipboard("1839246711")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "Night Dancer",
+    Callback = function()
+    setclipboard("113900088691832")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "可爱的歌",
+    Callback = function()
+    setclipboard("106853685872121")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "哈基米山歌",
+    Callback = function()
+    setclipboard("71090232224338")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "开！！！",
+    Callback = function()
+    setclipboard("133701137571082")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "飞起来",
+    Callback = function()
+    setclipboard("104492649688505")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "野人叫声",
+    Callback = function()
+    setclipboard("18980082432")
+    end
+})
+
+Tabs.PictureTab:Button({
+    Title = "暗区突围",
+    Callback = function()
+    setclipboard("115517104364000")
+    end
+})
+
+-------------------------------------动作
+Tabs.ActionTab:Button({
+    Title = "芦管r6",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+    end
+})
+
+Tabs.ActionTab:Button({
+    Title = "芦管r15",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+    end
+})
+
+Tabs.ActionTab:Button({
+    Title = "TSB动作脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NotEnoughJack/socializehub/refs/heads/main/script.lua"))()
+    end
+})
+
+-------------------------------------专门-------------------------------------
+Tabs.BeiyiqiTab:Button({
+    Title = "请滑动右边的长条不然会误触→",
+    Callback = function()
+        
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "被遗弃情云中心",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/Forsaken"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "墨水游戏",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/TexRBLlX"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "墨水游戏hook防封",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/05e1141b8fdeec9dd262dde9f071d6ffdaccd5b1/inkgamereducer.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "墨水游戏ax",
+    Callback = function()
+        script_key="输入你的卡密";loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/AX%20CN"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "静默瞄准1.2最新",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/fcsdsss/games/refs/heads/main/Silent%20aim/1.2"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "犯罪脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/UNDETECTEDWARE/SCRIPT/refs/heads/main/UNDETECTEDWARENEW"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "犯罪脚本jx",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/JX-CRIMINALITY"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "被遗弃脚本最强需要卡密",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ivannetta/ShitScripts/main/forsaken.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "内脏与黑火鲨鱼",
+    Callback = function()
+        loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\65\\78\113\122\52\78\112\47\114\97\119"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "最强战场",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/louismich4el/Zygarde/refs/heads/main/ZygardeV1.txt"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "墨水游戏简易版（功能少，但够用）",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/GameLoad.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "鱼服务器脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/robloxheikeji/script/refs/heads/main/SpeedHubFisch.txt", true))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "3008脚本",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Viserromero/Antex/master/SCP3008'))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "最强战场无限侧闪",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/10tempest01/tempest-hub/refs/heads/main/Launcher.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "战争大亨",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fba7aeffae0253b8860a9dda57f80318.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "压力脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://github.com/Drop56796/CreepyEyeHub/blob/main/obfuscate.lua?raw=true"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "压力脚本2",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/ohiojjj/78/main/.github/workflows/Protected_5509067665689579.lua'))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "ohio宿摊破解",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XiProDev/XiPro/refs/heads/main/Free/宿傩Ohio破解版.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "kanl终极战场",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/dream77239/ubg-script/refs/heads/main/kanl"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "汉化版后门",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pijiaobenMSJMleng/backdoor/refs/heads/main/backdoor.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "血债",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ccacca444/scripts1/main/especially"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "最强战场垃圾桶",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man", true))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "被遗弃2",
+    Callback = function()
+        local L = loadstring or loadlocal ID = "https://raw.github.com/OAO-Kamu/I/main/Forsaken-CHANGED.Luau"L(game:HttpGet(ID))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "doors out",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/DOORS-Doors-outdoors-subfloor-script-48463"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "doorsout脚本卡密",
+    Callback = function()
+        setclipboard("98353-95725-25739-93462-92526-91246")
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "通用透视",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()	
+
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "极速传奇2",
+    Callback = function()
+        loadstring(game:HttpGet("https://relzhub.farrghii.com/loader.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "死铁轨刷债券全自动",
+    Callback = function()
+        getgenv().AutoExecute = true(loadstring or load)(game:HttpGet("https://raw.githubusercontent.com/hungquan99/HungHUB/main/loader.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "chain",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/LESum4rq'))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "bf",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "一路向西",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/fcsdsss/westboundscp/refs/heads/main/obfuscated.lua%20(1).txt"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "躲避脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Evade"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "躲避者谜团2",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-YARHM-12403"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "doors floor2",
+    Callback = function()
+        loadstring(game:HttpGet("https://github.com/DocYogurt/Main/raw/main/Scripts/DF2RW.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "被遗弃英文NOL",
+    Callback = function()
+        getfenv().ADittoKey="NOL_FRERKEY"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "51区",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Ghostmode65/STK-Bo2/master/STK-Menus/v7/STv7-Engine.txt'))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "死铁轨红叶子",
+    Callback = function()
+        --```
+script_key="PASTEKEYHERE";
+(loadstring or load)(game:HttpGet("https://getnative.cc/script/loader"))()
+--```
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "极速传奇1",
+    Callback = function()
+        AL = "制作人员 123fa98（AL）"loadstring(game:HttpGet("https://raw.githubusercontent.com/renlua/Roblox/main/%E6%9E%81%E9%80%9F%E4%BC%A0%E5%A5%87.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "LC",
+    Callback = function()
+        loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\74\67\54\78\107\105\76\85\47\114\97\119"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "中文doors脚本",
+    Callback = function()
+        loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "99自动钻石",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/CommonSense12/NOOOOOO/refs/heads/main/Imflyinganukenuke.lua"))()
+    end
+})
+
+Tabs.BeiyiqiTab:Button({
+    Title = "尘飞土扬的旅行",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/artemy133563/Utilities/main/ADustyTrip",true))()
+    end
+})
+
+Window:OnClose(function()
+    print("UI closed.")
+    if NoclipConnection then
+        NoclipConnection:Disconnect()
+    end
+end)
